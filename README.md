@@ -27,8 +27,8 @@ Alternative promise flow: X -> B, B -> C, C -> D
 
 Now you have to duplicate the promise chain for each possibility.
 
-One of the primary principles of Redux is that the (state is the single source
-of truth.) [https://github.com/rackt/redux/blob/master/docs/introduction/ThreePrinciples.md#single-source-of-truth]
+One of the primary principles of Redux is that the [state is the single source
+of truth.](https://github.com/rackt/redux/blob/master/docs/introduction/ThreePrinciples.md#single-source-of-truth)
 Why then, shouldn't we trigger our asynchronous state based on that
 single source of truth for the application?
 
@@ -38,12 +38,19 @@ dispatch the action when the app's state it meets your desired criteria.
 ## Related Projects
 
 [redux-thunk](https://github.com/gaearon/redux-thunk)
+
 [redux-promise](https://github.com/acdlite/redux-promise)
+
 [redux-rx](https://github.com/acdlite/redux-rx)
+
 [redux-effects](https://github.com/redux-effects/redux-effects)
+
 [redux-saga](https://github.com/yelouafi/redux-saga)
+
 [redux-watch](https://github.com/jprichardson/redux-watch)
+
 [redux-batched-subscribe](https://github.com/tappleby/redux-batched-subscribe)
+
 [redux-debounced](https://github.com/ryanseddon/redux-debounced)
 
 
