@@ -7,9 +7,9 @@ Redux State Triggers
 redux-trigger is a Redux middleware which allows delayed dispatching of an action
 based on a trigger state in the Redux store. Here's how it works:
 
-1. Dispatch a trigger (with action and state comparator function)
-2. The comparator function will be run every time the state is updated
-3. When the comparator function returns true, the trigger's action is dispatched
+1. Dispatch a trigger (with action and state matcher function)
+2. The matcher function will be run every time the state is updated
+3. When the matcher function returns true, the trigger's action is dispatched
 
 ## Why do it this way?
 
