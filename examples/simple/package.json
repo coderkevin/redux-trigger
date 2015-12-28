@@ -1,0 +1,25 @@
+{
+  "name": "redux-trigger-simple-example",
+  "version": "0.0.0",
+  "description": "Simple example using redux-trigger",
+  "scripts": {
+    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coderkevin/redux-trigger.git"
+  },
+  "keywords": [
+    "redux",
+    "react",
+    "reactjs",
+    "webpack"
+  ],
+  "author": "Kevin Killingsworth <kevin@redfenix.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coderkevin/redux-trigger/issues"
+  },
+  "homepage": "https://github.com/coderkevin/redux-trigger"
+}
