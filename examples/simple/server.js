@@ -16,15 +16,15 @@ const devConfig = {
 
 console.log( 'Starting server.' );
 
-var compiler = webpack( config );
+const compiler = webpack( config );
 app.use( webpackDevMiddleware( compiler, devConfig ) );
 app.use( webpackHotMiddleware( compiler ) );
 
-app.get( '/', function( req, res ) {
+app.get( '/', ( req, res ) => {
 	res.sendFile( __dirname + '/index.html' );
 } );
 
-app.listen( port, function( error ) {
+app.listen( port, ( error ) => {
 	if ( error ) {
 		console.error( error );
 	} else {
