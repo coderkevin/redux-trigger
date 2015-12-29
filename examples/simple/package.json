@@ -6,7 +6,7 @@
     "build-dev": "npm run clean && npm run build-client-dev",
     "build-client-dev": "node_modules/webpack/bin/webpack.js -d --progress --colors",
     "clean": "rimraf dist",
-    "start": "npm run build-dev && node server.js",
+    "start": "npm run build-dev && node server.babel.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/coderkevin/redux-trigger",
   "dependencies": {
+    "express": "^4.13.3",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.5",
