@@ -1,26 +1,53 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import NumberPicker from '../components/NumberPicker';
+import { setNumberEntry } from '../actions/numberentry';
+import { addNumber } from '../actions/primes';
 
 class App extends Component {
 	constructor( props ) {
 		super( props );
+		this.handleNumberEntryChange = this.handleNumberEntryChange.bind( this );
+		this.handleNumberEntrySubmit = this.handleNumberEntrySubmit.bind( this );
+	}
+
+	handleNumberEntryChange( e ) {
+		this.props.dispatch( setNumberEntry( e.target.value ) );
+	}
+
+	handleNumberEntrySubmit( e ) {
+		e.preventDefault();
+
+		const { numberEntry } = this.props;
+		this.props.dispatch( addNumber( numberEntry ) );
 	}
 
 	render() {
+		const submitText = "Add Number";
+		const { numberEntry } = this.props;
+
 		return (
 			<div>
-				<h1>redux-trigger simple example</h1>
+				<NumberPicker submitText={ submitText }
+				              value={ numberEntry }
+				              onChange={ this.handleNumberEntryChange }
+											onSubmit={ this.handleNumberEntrySubmit } />
 			</div>
 		);
 	}
 }
 
 App.propTypes = {
+	numberEntry: PropTypes.string.isRequired,
 	dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps( state ) {
-	return { };
+	const { numberEntry } = state;
+
+	return {
+		numberEntry
+	};
 }
 
 export default connect( mapStateToProps )( App );

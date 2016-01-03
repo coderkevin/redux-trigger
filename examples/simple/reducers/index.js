@@ -1,9 +1,21 @@
 import { combineReducers } from 'redux';
 import {
+	SET_NUMBER_ENTRY
+} from '../actions/numberentry';
+import {
 	ADD_PRIME,
 	ADD_NON_PRIME,
 	QUEUE_NUMBER
 } from '../actions/primes';
+
+function numberEntry( state = '', action ) {
+	switch ( action.type ) {
+		case SET_NUMBER_ENTRY:
+			return action.number;
+		default:
+			return state;
+	}
+}
 
 const primesInitialState = {
 	primes: [],
@@ -11,7 +23,7 @@ const primesInitialState = {
 	queue: []
 };
 
-function primesReducer( state = primesInitialState, action ) {
+function primes( state = primesInitialState, action ) {
 	switch ( action.type ) {
 		case ADD_PRIME:
 			const primes = [ ...state.primes, action.prime ];
@@ -37,7 +49,8 @@ function primesReducer( state = primesInitialState, action ) {
 }
 
 const rootReducer = combineReducers( {
-	primesReducer
+	numberEntry,
+	primes
 } );
 
 export default rootReducer;
