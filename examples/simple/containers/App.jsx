@@ -19,6 +19,7 @@ class App extends Component {
 		e.preventDefault();
 
 		const { numberEntry } = this.props;
+		this.props.dispatch( setNumberEntry( '' ) );
 		this.props.dispatch( addNumber( numberEntry ) );
 	}
 

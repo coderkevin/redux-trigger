@@ -11,10 +11,19 @@ import {
 function numberEntry( state = '', action ) {
 	switch ( action.type ) {
 		case SET_NUMBER_ENTRY:
-			return action.number;
+			if ( '' === action.number || isNormalInteger( action.number ) ) {
+				return action.number;
+			} else {
+				// Note: Could set an error state here for user validation.
+				return state;
+			}
 		default:
 			return state;
 	}
+}
+
+function isNormalInteger( str ) {
+	return /^\+?(0|[1-9]\d*)$/.test( str );
 }
 
 const primesInitialState = {
