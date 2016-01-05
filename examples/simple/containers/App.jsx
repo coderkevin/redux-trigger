@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import NumberPicker from '../components/NumberPicker';
+import NumberList from '../components/NumberList';
 import { setNumberEntry } from '../actions/numberentry';
 import { addNumber } from '../actions/primes';
 
@@ -25,7 +26,7 @@ class App extends Component {
 
 	render() {
 		const submitText = "Add Number";
-		const { numberEntry } = this.props;
+		const { numberEntry, primes, nonPrimes } = this.props;
 
 		return (
 			<div>
@@ -33,6 +34,10 @@ class App extends Component {
 				              value={ numberEntry }
 				              onChange={ this.handleNumberEntryChange }
 											onSubmit={ this.handleNumberEntrySubmit } />
+				<h2>Primes</h2>
+				<NumberList numbers={ primes } />
+				<h2>Non-Primes</h2>
+				<NumberList numbers={ nonPrimes } />
 			</div>
 		);
 	}
@@ -40,14 +45,19 @@ class App extends Component {
 
 App.propTypes = {
 	numberEntry: PropTypes.string.isRequired,
+	primes: PropTypes.array.isRequired,
+	nonPrimes: PropTypes.array.isRequired,
 	dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps( state ) {
-	const { numberEntry } = state;
+	const { numberEntry, primeState } = state;
+	const { primes, nonPrimes } = primeState;
 
 	return {
-		numberEntry
+		numberEntry,
+		primes,
+		nonPrimes
 	};
 }
 

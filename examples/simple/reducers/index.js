@@ -32,7 +32,7 @@ const primesInitialState = {
 	queue: []
 };
 
-function primes( state = primesInitialState, action ) {
+function primeState( state = primesInitialState, action ) {
 	switch ( action.type ) {
 		case ADD_PRIME:
 			const primes = [ ...state.primes, action.prime ];
@@ -59,7 +59,7 @@ function primes( state = primesInitialState, action ) {
 
 const rootReducer = combineReducers( {
 	numberEntry,
-	primes
+	primeState
 } );
 
 export default rootReducer;
