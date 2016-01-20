@@ -1,5 +1,5 @@
 // TODO: Switch this out with a proper import from the module when it's ready.
-import { createTrigger, addTrigger } from '../../../src';
+import { addTrigger } from '../../../src';
 import { checkNextPrimeAction } from '../middleware/primesMiddleware';
 
 const REMOVE_FROM_QUEUE = 'REMOVE_FROM_QUEUE';
