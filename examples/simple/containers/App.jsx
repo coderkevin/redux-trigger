@@ -4,7 +4,7 @@ import NumberPicker from '../components/NumberPicker';
 import NumberList from '../components/NumberList';
 import WorkingMessage from '../components/WorkingMessage';
 import { setNumberEntry } from '../actions/numberentry';
-import { addNumber } from '../actions/primes';
+import { addQueueNumber } from '../actions/primes';
 
 class App extends Component {
 	constructor( props ) {
@@ -22,7 +22,7 @@ class App extends Component {
 
 		const { numberEntry } = this.props;
 		this.props.dispatch( setNumberEntry( '' ) );
-		this.props.dispatch( addNumber( numberEntry ) );
+		this.props.dispatch( addQueueNumber( numberEntry ) );
 	}
 
 	render() {

@@ -22,7 +22,6 @@ module.exports = {
 			test: /\.jsx?$/,
 			loaders: [ 'babel' ],
 			exclude: /node_modules/,
-			include: __dirname
 		} ]
 	},
 	resolve: {

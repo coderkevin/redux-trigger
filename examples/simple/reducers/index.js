@@ -5,7 +5,8 @@ import {
 import {
 	ADD_PRIME,
 	ADD_NON_PRIME,
-	QUEUE_NUMBER
+	ADD_QUEUE_NUMBER,
+	REMOVE_QUEUE_NUMBER
 } from '../actions/primes';
 
 function numberEntry( state = '', action ) {
@@ -35,22 +36,32 @@ const primesInitialState = {
 function primeState( state = primesInitialState, action ) {
 	switch ( action.type ) {
 		case ADD_PRIME:
-			const primes = [ ...state.primes, action.prime ];
+			const primes = [ ...state.primes, action.number ];
 
 			return Object.assign( {}, state, {
 				primes
 			} );
 		case ADD_NON_PRIME:
-			const nonPrimes = [ ...state.nonPrimes, action.nonPrime ];
+			const nonPrimes = [ ...state.nonPrimes, action.number ];
 
 			return Object.assign( {}, state, {
 				nonPrimes
 			} );
-		case QUEUE_NUMBER:
-			const queue = [ ...state.queue, action.number ];
+		case ADD_QUEUE_NUMBER:
+			console.log("queueing number: " + action.number);
+			const addedQueue = [ ...state.queue, action.number ];
 
 			return Object.assign( {}, state, {
-				queue
+				queue: addedQueue
+			} );
+		case REMOVE_QUEUE_NUMBER:
+			console.log("unqueuing number: " + action.number);
+			const removedQueue = state.queue.filter(
+				( num ) => { return num != action.number }
+			);
+
+			return Object.assign( {}, state, {
+				queue: removedQueue
 			} );
 		default:
 			return state;
