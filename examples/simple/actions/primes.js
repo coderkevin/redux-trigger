@@ -1,6 +1,6 @@
 
 export const ADD_PRIME = 'ADD_PRIME';
-export const ADD_NON_PRIME = 'ADD_PRIME';
+export const ADD_NON_PRIME = 'ADD_NON_PRIME';
 export const ADD_QUEUE_NUMBER = 'ADD_QUEUE_NUMBER';
 export const REMOVE_QUEUE_NUMBER = 'REMOVE_QUEUE_NUMBER';
 

@@ -21,6 +21,7 @@ function checkNextPrime( queue, dispatch ) {
 		console.log( 'checking next number ' + number );
 		checkPrime( number ).then(
 			( isPrime ) => {
+				dispatch( removeQueueNumber( number ) );
 				if ( isPrime ) {
 					console.log( 'number ' + number + ' is prime!' );
 					dispatch( addPrime( number ) );
@@ -28,7 +29,6 @@ function checkNextPrime( queue, dispatch ) {
 					console.log( 'number ' + number + ' is not prime!' );
 					dispatch( addNonPrime( number ) );
 				}
-				dispatch( removeQueueNumber( number ) );
 			}
 		);
 	}
@@ -38,14 +38,15 @@ function checkPrime( number ) {
 	return new Promise(
 		( resolve, reject ) => {
 
-			for ( let i = 0; i < number; i++ ) {
+			for ( let i = 2; i < number; i++ ) {
 				if ( Number.isInteger( number / i ) ) {
-					resolve( true );
+					console.log( number + " is divisible by " + i );
+					resolve( false );
 				}
 			}
 
 			// No numbers below this one divided cleanly, it's prime.
-			resolve( false );
+			resolve( true );
 		}
 	);
 }
