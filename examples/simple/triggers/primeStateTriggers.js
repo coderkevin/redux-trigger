@@ -12,7 +12,7 @@ function queueMatcher( state ) {
 }
 
 export function addQueueTrigger() {
-	return addTrigger( createTrigger(
+	return addTrigger(
 		queueMatcher,
 		( match ) => {
 			return [
@@ -20,6 +20,6 @@ export function addQueueTrigger() {
 				addQueueTrigger(),
 			];
 		}
-	) );
+	);
 }
 
