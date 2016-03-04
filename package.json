@@ -1,0 +1,33 @@
+{
+  "name": "redux-trigger",
+  "version": "1.0.0",
+  "description": "Redux State Triggers",
+  "scripts": {
+    "build-lib": "npm run clean && npm run build-lib-dev && npm run build-lib-release",
+    "build-lib-dev": "node_modules/babel/bin/babel.js src --out-dir lib",
+    "build-lib-release": "node_modules/babel/bin/babel.js src/index.js --out-file lib/index.min.js --plugins uglify:after",
+    "clean": "rimraf lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderkevin/redux-trigger.git"
+  },
+  "keywords": [
+    "redux",
+    "react",
+    "reactjs",
+    "webpack"
+  ],
+  "author": "Kevin Killingsworth (https://github.com/coderkevin)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coderkevin/redux-trigger/issues"
+  },
+  "homepage": "https://github.com/coderkevin/redux-trigger#readme",
+  "engine": "node >= 5.7.1",
+  "devDependencies": {
+    "babel": "^5.8.35",
+    "babel-plugin-uglify": "^1.0.2",
+    "rimraf": "^2.5.2"
+  }
+}
