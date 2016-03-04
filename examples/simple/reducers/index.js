@@ -36,20 +36,37 @@ const primesInitialState = {
 function primeState( state = primesInitialState, action ) {
 	switch ( action.type ) {
 		case ADD_PRIME:
-			const primes = [ ...state.primes, action.number ];
+			const primes = [ ...state.primes ];
+
+			// Only add it to the list if it's not been added before.
+			if ( primes.indexOf( action.number ) === -1 ) {
+				primes.push( action.number );
+			}
 
 			return Object.assign( {}, state, {
 				primes
 			} );
 		case ADD_NON_PRIME:
-			const nonPrimes = [ ...state.nonPrimes, action.number ];
+			const nonPrimes = [ ...state.nonPrimes ];
+
+			// Only add it to the list if it's not been added before.
+			if ( nonPrimes.indexOf( action.number ) === -1 ) {
+				nonPrimes.push( action.number );
+			}
 
 			return Object.assign( {}, state, {
 				nonPrimes
 			} );
 		case ADD_QUEUE_NUMBER:
 			console.log("queueing number: " + action.number);
-			const addedQueue = [ ...state.queue, action.number ];
+			const addedQueue = [ ...state.queue ];
+
+			// Only add it to the queue if it's not been added before.
+			if ( addedQueue.indexOf( action.number ) === -1 &&
+			     state.primes.indexOf( action.number ) === -1 &&
+			     state.nonPrimes.indexOf( action.number ) === -1  ) {
+				addedQueue.push( action.number );
+			}
 
 			return Object.assign( {}, state, {
 				queue: addedQueue
