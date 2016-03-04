@@ -4,6 +4,7 @@ export const CHECK_NEXT_PRIME = 'CHECK_NEXT_PRIME';
 
 function createPrimesMiddleware() {
 	return ( store ) => ( next ) => ( action ) => {
+
 		switch ( action.type ) {
 			case CHECK_NEXT_PRIME:
 				const { queue } = store.getState().primeState;
@@ -35,18 +36,22 @@ function checkNextPrime( queue, dispatch ) {
 }
 
 function checkPrime( number ) {
+
 	return new Promise(
 		( resolve, reject ) => {
+			// Create a worker to do the actual mathematical operations.
+			const worker = new Worker( '/static/worker-primes.js' );
 
-			for ( let i = 2; i < number; i++ ) {
-				if ( Number.isInteger( number / i ) ) {
-					console.log( number + " is divisible by " + i );
-					resolve( false );
-				}
+			worker.onmessage = function( evt ) {
+				console.log( 'message received from worker.' );
+				console.log( evt );
+				resolve( evt.data );
 			}
 
-			// No numbers below this one divided cleanly, it's prime.
-			resolve( true );
+			console.log( 'Worker created' );
+			console.log( worker );
+
+			worker.postMessage( Number( number ) );
 		}
 	);
 }

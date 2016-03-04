@@ -3,13 +3,14 @@ var webpack = require( 'webpack' );
 
 module.exports = {
 	devtool: 'cheap-module-source-map',
-	entry: [
-		'webpack-hot-middleware/client',
-		'./index.jsx'
-	],
+	entry: {
+		'hot-middleware': 'webpack-hot-middleware/client',
+		'bundle': './index.jsx',
+		'worker-primes': './workers/worker-primes.js'
+	},
 	output: {
 		path: path.join( __dirname, 'dist' ),
-		filename: 'bundle.js',
+		filename: '[name].js',
 		publicPath: '/static/'
 	},
 	plugins: [
