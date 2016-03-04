@@ -23,15 +23,12 @@ function checkPrimes( queue, dispatch ) {
 
 		queue.forEach( ( number ) => {
 			if ( ! workers[ number ] ) {
-				console.log( 'checking number ' + number );
 				checkPrime( number ).then(
 					( isPrime ) => {
 						dispatch( removeQueueNumber( number ) );
 						if ( isPrime ) {
-							console.log( 'number ' + number + ' is prime!' );
 							dispatch( addPrime( number ) );
 						} else {
-							console.log( 'number ' + number + ' is not prime!' );
 							dispatch( addNonPrime( number ) );
 						}
 					}
@@ -50,14 +47,12 @@ function checkPrime( number ) {
 			// Create a worker to do the actual mathematical operations.
 			const worker = new Worker( '/static/worker-primes.js' );
 			workers[ number ] = worker;
-			console.log( 'Worker created' );
-			console.log( worker );
 
 			worker.onmessage = function( evt ) {
-				console.log( 'message received from worker.' );
-				console.log( evt );
+				// Got the result back from the worker, clean up and resolve.
+				const isPrime = evt.data;
 				delete workers[ number ];
-				resolve( evt.data );
+				resolve( isPrime );
 			}
 
 			worker.postMessage( Number( number ) );

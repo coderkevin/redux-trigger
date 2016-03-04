@@ -6,8 +6,6 @@ const REMOVE_FROM_QUEUE = 'REMOVE_FROM_QUEUE';
 
 function queueMatcher( state ) {
 	const { queue } = state.primeState;
-	console.log('queue');
-	console.log(queue);
 	return ( queue.length > 0 ? queue : null );
 }
 

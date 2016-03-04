@@ -12,15 +12,9 @@ function createTriggerMiddleware() {
 		switch ( action.type ) {
 			case REDUX_TRIGGER_ADD:
 				triggers.unshift( action.trigger );
-
-				console.log("** redux-trigger add! **");
-				console.log( triggers );
 				return true;
 			case REDUX_TRIGGER_CANCEL:
 				triggers.splice( triggers.indexOf( action.trigger ), 1 );
-
-				console.log("** redux-trigger cancel! **");
-				console.log( triggers );
 				return true;
 			default:
 				let res = next( action );

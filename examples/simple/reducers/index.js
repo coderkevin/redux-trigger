@@ -58,7 +58,6 @@ function primeState( state = primesInitialState, action ) {
 				nonPrimes
 			} );
 		case ADD_QUEUE_NUMBER:
-			console.log("queueing number: " + action.number);
 			const addedQueue = [ ...state.queue ];
 
 			// Only add it to the queue if it's not been added before.
@@ -72,7 +71,6 @@ function primeState( state = primesInitialState, action ) {
 				queue: addedQueue
 			} );
 		case REMOVE_QUEUE_NUMBER:
-			console.log("unqueuing number: " + action.number);
 			const removedQueue = state.queue.filter(
 				( num ) => { return num != action.number }
 			);

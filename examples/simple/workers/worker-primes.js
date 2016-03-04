@@ -1,9 +1,7 @@
 
-console.log( 'worker script executed.' );
-
 addEventListener( 'message', function( evt ) {
 	const number = evt.data;
-	console.log( 'Checking number' + number );
+	console.log( 'Checking number: ' + number );
 
 	postMessage( isPrime( number ) );
 
