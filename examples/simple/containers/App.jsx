@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import NumberPicker from '../components/NumberPicker';
+import Preset from '../components/Preset';
 import NumberList from '../components/NumberList';
 import WorkingMessage from '../components/WorkingMessage';
 import { setNumberEntry } from '../actions/numberentry';
@@ -11,6 +12,7 @@ class App extends Component {
 		super( props );
 		this.handleNumberEntryChange = this.handleNumberEntryChange.bind( this );
 		this.handleNumberEntrySubmit = this.handleNumberEntrySubmit.bind( this );
+		this.handlePresetClick = this.handlePresetClick.bind( this );
 	}
 
 	handleNumberEntryChange( e ) {
@@ -25,9 +27,13 @@ class App extends Component {
 		this.props.dispatch( addQueueNumber( numberEntry ) );
 	}
 
+	handlePresetClick( preset ) {
+		this.props.dispatch( addQueueNumber( preset ) );
+	}
+
 	render() {
 		const submitText = "Add Number";
-		const { numberEntry, primes, nonPrimes, queue } = this.props;
+		const { numberEntry, presets, primes, nonPrimes, queue } = this.props;
 		let workMessage = <span> &nbsp; </span>;
 
 		if ( queue.length > 0 ) {
@@ -42,6 +48,15 @@ class App extends Component {
 				              onChange={ this.handleNumberEntryChange }
 				              onSubmit={ this.handleNumberEntrySubmit } />
 
+				<div>
+					Presets:
+					{
+						presets.map( ( preset ) => {
+							return <Preset key={ preset } value={ preset } onClick={ ( e ) => { this.handlePresetClick( preset ); } } />;
+						} )
+					}
+				</div>
+
 				<em>{ workMessage }</em>
 
 				<h2>Primes</h2>
@@ -55,6 +70,7 @@ class App extends Component {
 
 App.propTypes = {
 	numberEntry: PropTypes.string.isRequired,
+	presets: PropTypes.array.isRequired,
 	primes: PropTypes.array.isRequired,
 	nonPrimes: PropTypes.array.isRequired,
 	queue: PropTypes.array.isRequired,
@@ -63,10 +79,11 @@ App.propTypes = {
 
 function mapStateToProps( state ) {
 	const { numberEntry, primeState } = state;
-	const { primes, nonPrimes, queue } = primeState;
+	const { presets, primes, nonPrimes, queue } = primeState;
 
 	return {
 		numberEntry,
+		presets,
 		primes,
 		nonPrimes,
 		queue

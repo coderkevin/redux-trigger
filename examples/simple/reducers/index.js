@@ -28,6 +28,7 @@ function isNormalInteger( str ) {
 }
 
 const primesInitialState = {
+	presets: [ '179426447', '179430203', '1299912', '179621987', '677' ],
 	primes: [],
 	nonPrimes: [],
 	queue: []
