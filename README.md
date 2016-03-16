@@ -35,6 +35,46 @@ single source of truth for the application?
 redux-triggers allows you to set a trigger for a desired state, and then
 dispatch the action when the app's state it meets your desired criteria.
 
+## Need a better example?
+
+What's the primary example of logging in or signing up for an application? It's populating the user data, right? However, many applications want other side effects to happen upon login as well.
+
+For example, say you want to always fetch some API data from GitHub for each user upon login. You could set a promise chain as follows:
+
+```Enter Credentials -> Login -> Populate User Data -> Fetch GitHub Data -> Display Data```
+
+However, what about those users who just registered for your site? Now you need another promise chain for that:
+
+```Fill out signup -> Submit -> (User Data already populated) -> Fetch GitHub Data -> Display Data```
+
+Now, what if you want to allow logins via Facebook? Yet another promise chain:
+
+```Click "Login with Facebook" -> Facebook API Login -> Populate User Data -> Fetch GitHub Data -> Display Data```
+
+And sometime in the future, someone will want another API login, like Google, LinkedIn, etc. Let's just hope the developer who implements it knows that they need to implement a similar promise chain!
+
+### A better way
+
+If we drive our application logic from our single source of truth (the Redux state tree), now we can focus on the data we have, and not care how we got it.
+
+So, if we have a redux-trigger that monitors the redux state tree, we can break up the promise chains above. In this instance our trigger would act as such:
+
+```
+Matcher: When a GitHub User ID exists, and there's no corresponding GitHub data
+Action: Fetch GitHub Data for given User
+```
+
+So now, when a user logs in or signs up:
+
+```Enter Credentials -> Login -> Populate User Data```
+
+```Fill out signup -> Submit -> (User Data already populated)```
+
+```Click "Login with Facebook" -> Facebook API Login -> Populate User Data```
+
+They can handle their primary purpose of populating user data, and any time that data is populated, the trigger fires and the GitHub data populates as a result.
+
+
 ## Related Projects
 
 [redux-thunk](https://github.com/gaearon/redux-thunk)
