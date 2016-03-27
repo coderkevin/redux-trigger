@@ -1,0 +1,48 @@
+{
+  "name": "redux-trigger-external-apis-example",
+  "version": "0.0.0",
+  "description": "redux-trigger example with external API calls",
+  "main": "index.js",
+  "scripts": {
+    "build-dev": "npm run clean && npm run build-client-dev",
+		"build-client-dev": "node_modules/webpack/bin/webpack.js -d --progress --colors",
+		"clean": "rimraf dist",
+	"start": "npm run build-dev && node server/server.babel.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderkevin/redux-trigger.git"
+  },
+  "keywords": [
+    "redux",
+    "react",
+    "reactjs",
+    "webpack"
+  ],
+  "author": "Kevin Killingsworth <kevin@redfenix.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coderkevin/redux-trigger/issues"
+  },
+  "homepage": "https://github.com/coderkevin/redux-trigger#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-redux": "^4.4.1",
+    "redux": "^3.3.1",
+    "redux-logger": "^2.6.1",
+    "redux-multi": "^0.1.12"
+  },
+  "devDependencies": {
+    "babel": "^5.8.38",
+    "babel-core": "^5.8.38",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-react-transform": "^2.0.2",
+    "react-transform-hmr": "^1.0.4",
+    "rimraf": "^2.5.2",
+    "webpack": "^1.12.14",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.10.0"
+  }
+}
