@@ -2,11 +2,14 @@
   "name": "redux-trigger",
   "version": "1.0.0",
   "description": "Redux State Triggers",
+	"main": "lib/index.js",
   "scripts": {
     "build-lib": "npm run clean && npm run build-lib-dev && npm run build-lib-release",
     "build-lib-dev": "node_modules/babel/bin/babel.js src --out-dir lib",
     "build-lib-release": "node_modules/babel/bin/babel.js src/index.js --out-file lib/index.min.js --plugins uglify:after",
-    "clean": "rimraf lib"
+    "clean": "rimraf lib",
+		"prepublish": "npm run build-lib-release",
+		"postpublish": "npm run clean"
   },
   "repository": {
     "type": "git",
